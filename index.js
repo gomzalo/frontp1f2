@@ -12,6 +12,11 @@ const PORT = process.env.PORT || 5000;
 
 var bodyParser = require('body-parser');
 
+var geoip = require('geoip-lite');
+var ip;
+
+
+
 express()
     .use(express.static(path.join(__dirname, 'public')))
     .use(bodyParser.json())

@@ -1,3 +1,46 @@
+const Http1 = new XMLHttpRequest();
+  const url1='https://apiproyecto1ace2.herokuapp.com/api/datos';
+  
+  Http1.open("GET", url1);
+  Http1.send();
+
+
+  // Tabla de datos
+  var datos_arr1 = [];
+  // Arreglos 
+  var id_arr = [];
+  var peso_arr = [];
+  var inclinacion_arr = [];
+  var agua_arr = [];
+  var luminosidad_arr = [];
+  var sonido_arr = [];
+  var ritmo_arr = [];
+  Http1.onreadystatechange = (e) => {
+
+      // console.log(Http.responseText);
+      datos_arr1 = JSON.parse(Http1.responseText);
+      console.log(datos_arr1);
+
+      
+      // console.log("datospos1");
+      // console.log(datos_arr[0].peso);
+      var table_content = "";
+      var i;
+      for (i = 0; i < datos_arr1.length; i++) {
+          // Llenando los arreglos
+          id_arr[i] = datos_arr1[i].id;
+          inclinacion_arr[i] = datos_arr1[i].inclinacion;
+          peso_arr[i] = datos_arr1[i].peso;
+          agua_arr[i] = datos_arr1[i].agua;
+          luminosidad_arr[i] = datos_arr1[i].luminosidad;
+          sonido_arr[i] = datos_arr1[i].sonido;
+          ritmo_arr[i] = datos_arr1[i].ritmo;
+      }
+      document.getElementById("tabla").innerHTML = table_content;
+  }
+  // **************************   Usando arreglos de datos  **************************
+ console.log("arreglo de ritmos: ");
+ console.log(ritmo_arr);
 type = ['primary', 'info', 'success', 'warning', 'danger'];
 
 demo = {
@@ -72,7 +115,8 @@ demo = {
       }
     };
 
-    ctx = document.getElementById('lineChartExample').getContext("2d");
+    // ctx = document.getElementById('lineChartExample').getContext("2d");
+    ctx = document.getElementById('chartLinePurple').getContext("2d");
 
     gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
     gradientStroke.addColorStop(0, '#80b6f4');
@@ -86,7 +130,7 @@ demo = {
       type: 'line',
       responsive: true,
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60"],
         datasets: [{
           label: "Active Users",
           borderColor: "#f96332",
@@ -99,10 +143,12 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+          // data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+          data: luminosidad_arr
         }]
       },
       options: gradientChartOptionsConfiguration
+      // options: gradientChartOptionsConfigurationWithTooltipOrange
     });
   },
 
@@ -230,9 +276,9 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 50,
-            suggestedMax: 110,
-            padding: 20,
+            suggestedMin: 150,
+            suggestedMax: 1500,
+            padding: 150,
             fontColor: "#ff8a76"
           }
         }],
@@ -279,8 +325,8 @@ demo = {
           },
           ticks: {
             suggestedMin: 50,
-            suggestedMax: 125,
-            padding: 20,
+            suggestedMax: 550,
+            padding: 50,
             fontColor: "#9e9e9e"
           }
         }],
@@ -327,8 +373,8 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 120,
+            suggestedMin: true,
+            suggestedMax: false,
             padding: 20,
             fontColor: "#9e9e9e"
           }
@@ -358,7 +404,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
 
     var data = {
-      labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: ['5', '10', '15', '20', '25', '30'],
       datasets: [{
         label: "Data",
         fill: true,
@@ -394,7 +440,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
 
     var data = {
-      labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
+      labels: ['5', '10', '15', '20', '25'],
       datasets: [{
         label: "My First dataset",
         fill: true,
@@ -410,7 +456,8 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [90, 27, 60, 12, 80],
+        // data: [90, 27, 60, 12, 80],
+        data: sonido_arr,
       }]
     };
 
@@ -423,8 +470,8 @@ demo = {
 
 
 
-    var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
+    var chart_labels = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
+    // var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
 
 
     var ctx = document.getElementById("chartBig1").getContext('2d');
@@ -453,7 +500,8 @@ demo = {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: chart_data,
+          // data: chart_data,
+          data: ritmo_arr,
         }]
       },
       options: gradientChartOptionsConfigurationWithTooltipPurple
@@ -461,12 +509,14 @@ demo = {
     var myChartData = new Chart(ctx, config);
     $("#0").click(function() {
       var data = myChartData.config.data;
-      data.datasets[0].data = chart_data;
+      // data.datasets[0].data = chart_data;
+      data.datasets[0].data = inclinacion_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
     $("#1").click(function() {
-      var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
+      // var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
+      var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
       data.datasets[0].data = chart_data;
       data.labels = chart_labels;
@@ -475,6 +525,7 @@ demo = {
 
     $("#2").click(function() {
       var chart_data = [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130];
+      // var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
       data.datasets[0].data = chart_data;
       data.labels = chart_labels;
@@ -498,7 +549,7 @@ demo = {
         display: false
       },
       data: {
-        labels: ['USA', 'GER', 'AUS', 'UK', 'RO', 'BR'],
+        labels: ['10', '20', '30', '40', '50', '60'],
         datasets: [{
           label: "Countries",
           fill: true,
@@ -508,8 +559,8 @@ demo = {
           borderWidth: 2,
           borderDash: [],
           borderDashOffset: 0.0,
-          data: [53, 20, 10, 80, 100, 45],
-        }]
+          data: agua_arr,
+        }],
       },
       options: gradientBarChartConfiguration
     });
