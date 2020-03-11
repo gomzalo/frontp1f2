@@ -102,45 +102,35 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Mike John responded to your email</a>
+                    <a href="#" class="nav-item dropdown-item">201318652 - Gonzalo García</a>
                   </li>
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">You have 5 more tasks</a>
+                    <a href="#" class="nav-item dropdown-item">201314564 - Ronald Ordóñez</a>
                   </li>
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Your friend Michael is in town</a>
+                    <a href="#" class="nav-item dropdown-item">201403520 - Mynor Sinay</a>
                   </li>
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Another notification</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Another one</a>
+                    <a href="#" class="nav-item dropdown-item">201504326 - Walter Paredes</a>
                   </li>
                 </ul>
               </li>
-              <!-- <li class="dropdown nav-item">
+              <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
-                    <img src="../assets/img/anime3.png">
+                    <img src="../assets/img/bg5.jpg">
                   </div>
                   <b class="caret d-none d-lg-block d-xl-block"></b>
                   <p class="d-lg-none">
-                    Log out
+                    Alarma
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Profile</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Settings</a>
-                  </li>
-                  <div class="dropdown-divider"></div>
-                  <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Log out</a>
+                    <button class="nav-item dropdown-item" id="modo_robo">Modo robo</button>
                   </li>
                 </ul>
-              </li> -->
+              </li>
               <li class="separator d-lg-none"></li>
             </ul>
           </div>
@@ -337,8 +327,42 @@
     <script>
       $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
-        demo.initGoogleMaps();
+        // demo.initGoogleMaps();
       });
+    </script>
+     <!-- Modo alarma -->
+     <script>
+      const Http2 = new XMLHttpRequest();
+        const url2='http://apiproyecto1ace2.herokuapp.com/api/alarmas';
+        
+        
+         var estado_arr = [];
+        const boton_alarma = document.getElementById('modo_robo');
+        boton_alarma.addEventListener('click', function(e){
+          // console.log('boton presionado');
+          Http2.open("GET", url2);
+          Http2.send();
+
+          Http2.onreadystatechange = (e) => {
+          
+          console.log(Http2.responseText);
+          estado_arr = JSON.parse(Http2.responseText);
+          console.log(estado_arr);
+          var estado;
+          var k;
+          for (k = 0; k < estado_arr.length; k++) {
+            estado = estado_arr[k].estado;
+            
+          }
+          if(estado == 0){
+              console.log("ALARMA DESACTIVADA");
+            }else{
+              console.log("ALARMA ACTIVADA");
+            }
+          // document.getElementById("tabla").innerHTML = table_content;
+          }
+        });
+       
     </script>
 </body>
 

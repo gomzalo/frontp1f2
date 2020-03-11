@@ -116,41 +116,44 @@ demo = {
     };
 
     // ctx = document.getElementById('lineChartExample').getContext("2d");
-    ctx = document.getElementById('chartLinePurple').getContext("2d");
+    // ---------------------------- chartlinepurple ----------------------------
+    // ctx = document.getElementById('chartLinePurple').getContext("2d");
 
-    gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-    gradientStroke.addColorStop(0, '#80b6f4');
-    gradientStroke.addColorStop(1, chartColor);
+    // gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+    // gradientStroke.addColorStop(0, '#80b6f4');
+    // gradientStroke.addColorStop(1, chartColor);
 
-    gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-    gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-    gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
+    // gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+    // gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+    // gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
 
-    myChart = new Chart(ctx, {
-      type: 'line',
-      responsive: true,
-      data: {
-        labels: ["5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60"],
-        datasets: [{
-          label: "Active Users",
-          borderColor: "#f96332",
-          pointBorderColor: "#FFF",
-          pointBackgroundColor: "#f96332",
-          pointBorderWidth: 2,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 1,
-          pointRadius: 4,
-          fill: true,
-          backgroundColor: gradientFill,
-          borderWidth: 2,
-          // data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
-          data: luminosidad_arr
-        }]
-      },
-      options: gradientChartOptionsConfiguration
-      // options: gradientChartOptionsConfigurationWithTooltipOrange
-    });
+    // myChart = new Chart(ctx, {
+    //   type: 'line',
+    //   responsive: true,
+    //   data: {
+    //     labels: ["5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60"],
+    //     datasets: [{
+    //       label: "Active Users",
+    //       borderColor: "#f96332",
+    //       pointBorderColor: "#FFF",
+    //       pointBackgroundColor: "#f96332",
+    //       pointBorderWidth: 2,
+    //       pointHoverRadius: 4,
+    //       pointHoverBorderWidth: 1,
+    //       pointRadius: 4,
+    //       fill: true,
+    //       backgroundColor: gradientFill,
+    //       borderWidth: 2,
+    //       // data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+    //       data: luminosidad_arr
+    //     }]
+    //   },
+    //   options: gradientChartOptionsConfiguration
+    //   // options: gradientChartOptionsConfigurationWithTooltipOrange
+    // });
+  // ---------------------------- ----------------------------
   },
+  
 
   initDashboardPageCharts: function() {
 
@@ -394,17 +397,17 @@ demo = {
         }]
       }
     };
-
+// ---------------------------- chartlinepurple ----------------------------
     var ctx = document.getElementById("chartLinePurple").getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
     gradientStroke.addColorStop(1, 'rgba(72,72,176,0.2)');
-    gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    // gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');s
     gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
 
     var data = {
-      labels: ['5', '10', '15', '20', '25', '30'],
+      labels: ['0', '5', '10', '15', '20', '25', '30', '40'],
       datasets: [{
         label: "Data",
         fill: true,
@@ -420,16 +423,18 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [80, 100, 70, 80, 120, 80],
+        // data: [80, 100, 70, 80, 120, 80],
+        data: luminosidad_arr,
       }]
     };
 
     var myChart = new Chart(ctx, {
       type: 'line',
       data: data,
-      options: gradientChartOptionsConfigurationWithTooltipPurple
+      // options: gradientChartOptionsConfigurationWithTooltipPurple
+      options: gradientChartOptionsConfigurationWithTooltipOrange
     });
-
+// ----------------------------  ----------------------------
 
     var ctxGreen = document.getElementById("chartLineGreen").getContext("2d");
 
@@ -510,7 +515,7 @@ demo = {
     $("#0").click(function() {
       var data = myChartData.config.data;
       // data.datasets[0].data = chart_data;
-      data.datasets[0].data = inclinacion_arr;
+      data.datasets[0].data = ritmo_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
@@ -518,7 +523,8 @@ demo = {
       // var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
       var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
-      data.datasets[0].data = chart_data;
+      // data.datasets[0].data = chart_data;
+      data.datasets[0].data = inclinacion_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
@@ -528,6 +534,7 @@ demo = {
       // var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
       data.datasets[0].data = chart_data;
+      // data.datasets[0].data = pasos_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
@@ -564,6 +571,94 @@ demo = {
       },
       options: gradientBarChartConfiguration
     });
+
+    // *****************************************************************************************************************
+    // General configuration for the charts with Line gradientStroke
+// gradientChartOptionsConfiguration1 =  {
+//   maintainAspectRatio: false,
+//   legend: {
+//         display: false
+//    },
+
+//    tooltips: {
+//      backgroundColor: '#fff',
+//      titleFontColor: '#333',
+//      bodyFontColor: '#666',
+//      bodySpacing: 4,
+//      xPadding: 12,
+//      mode: "nearest",
+//      intersect: 0,
+//      position: "nearest"
+//    },
+//    responsive: true,
+//    scales:{
+//      yAxes: [{
+//        barPercentage: 1.6,
+//            gridLines: {
+//              drawBorder: false,
+//                color: 'rgba(29,140,248,0.0)',
+//                zeroLineColor: "transparent",
+//            },
+//            ticks: {
+//              suggestedMin:50,
+//              suggestedMax: 110,
+//                padding: 20,
+//                fontColor: "#9a9a9a"
+//            }
+//          }],
+
+//      xAxes: [{
+//        barPercentage: 1.6,
+//            gridLines: {
+//              drawBorder: false,
+//                color: 'rgba(220,53,69,0.1)',
+//                zeroLineColor: "transparent",
+//            },
+//            ticks: {
+//                padding: 20,
+//                fontColor: "#9a9a9a"
+//            }
+//          }]
+//      }
+// };
+
+// var ctx = document.getElementById("lineChartExample").getContext("2d");
+
+// var gradientStroke = ctx.createLinearGradient(0,230,0,50);
+
+// gradientStroke.addColorStop(1, 'rgba(72,72,176,0.2)');
+// gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+// gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+
+// var data = {
+//   // labels: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],
+//   labels: ['5','10','15','20','25','30','35','40','45','50','55','60'],
+//   datasets: [{
+//     label: "Data",
+//     fill: true,
+//     backgroundColor: gradientStroke,
+//     borderColor: '#d048b6',
+//     borderWidth: 2,
+//     borderDash: [],
+//     borderDashOffset: 0.0,
+//     pointBackgroundColor: '#d048b6',
+//     pointBorderColor:'rgba(255,255,255,0)',
+//     pointHoverBackgroundColor: '#d048b6',
+//     pointBorderWidth: 20,
+//     pointHoverRadius: 4,
+//     pointHoverBorderWidth: 15,
+//     pointRadius: 4,
+//     // data: [ 60,110,70,100, 75, 90, 80, 100, 70, 80, 120, 80],
+//     data: luminosidad_arr,
+//   }]
+// };
+
+// var myChart = new Chart(ctx, {
+//   type: 'line',
+//   data: data,
+//   options: gradientChartOptionsConfiguration1
+// });
+    // *****************************************************************************************************************
 
   },
 
