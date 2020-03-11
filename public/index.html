@@ -608,6 +608,7 @@
       const Http2 = new XMLHttpRequest();
         const url2='http://apiproyecto1ace2.herokuapp.com/api/alarmas';
         
+        var popup = require('popups');
         
          var estado_arr = [];
         const boton_alarma = document.getElementById('modo_robo');
@@ -623,14 +624,16 @@
           console.log(estado_arr);
           var estado;
           var k;
-          for (k = 0; k < estado_arr.length; k++) {
-            estado = estado_arr[k].estado;
-            
-          }
+          estado = estado_arr[0].estado;
           if(estado == 0){
               console.log("ALARMA DESACTIVADA");
+              popup.alelrt({
+                content: "ALARMA DESACTIVADA"
+              });
+              // alelrt("ALARMA DESACTIVADA");
             }else{
               console.log("ALARMA ACTIVADA");
+              alelrt("ALARMA ACTIVADA");
             }
           // document.getElementById("tabla").innerHTML = table_content;
           }

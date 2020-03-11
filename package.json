@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "geoip-lite": "^1.4.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "popups": "^1.1.3"
   }
 }

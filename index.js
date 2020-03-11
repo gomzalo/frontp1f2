@@ -8,12 +8,12 @@ const express = require('express');
 // });
 
 const path = require('path');
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5000;
 
 var bodyParser = require('body-parser');
 
-var geoip = require('geoip-lite');
-var ip;
+// var geoip = require('geoip-lite');
+// var ip;
 
 
 
