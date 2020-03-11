@@ -111,12 +111,16 @@
           </button>
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto ">
-              <!-- <div class="search-bar input-group"> -->
-                <!-- <input type="text" class="form-control" placeholder="Search...">
-      <div class="input-group-addon"><i class="tim-icons icon-zoom-split"></i></div> -->
-                <!-- <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i></button> -->
-                <!-- You can choose types of search input -->
-              <!-- </div> -->
+
+
+
+              <div class="search-bar input-group">
+                <!-- <input type="text" class="form-control" placeholder="Search..."> -->
+                <div class="input-group-addon"><i class="tim-icons icon-zoom-split"></i></div>
+                <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i></button>
+                You can choose types of search input
+              </div>
+
               <!-- <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -125,13 +129,16 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <i class="tim-icons icon-simple-remove"></i>
           </button>
-        </div>
+        </div> -->
 
         <div class="modal-footer">
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
+
+
+
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="notification d-none d-lg-block d-xl-block"></div>
@@ -320,6 +327,9 @@
                       </th>
                       <th>
                         Ritmo
+                      </th>
+                      <th>
+                        Pasos
                       </th>
                     </thead>
                     <tbody id="tabla">
@@ -595,49 +605,75 @@
                                     + "<td>" + datos_arr[i].luminosidad + "</td>"
                                     + "<td>" + datos_arr[i].sonido + "</td>"
                                     + "<td>" + datos_arr[i].ritmo + "</td>"
+                                    + "<td>" + datos_arr[i].pasos + "</td>"
                                 + "</tr>";
             }
             document.getElementById("tabla").innerHTML = table_content;
-        }
+        } 
         
        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        
     </script>
     <!-- Modo alarma -->
     <script>
-      const Http2 = new XMLHttpRequest();
-        const url2='http://apiproyecto1ace2.herokuapp.com/api/alarmas';
-        
-        var popup = require('popups');
-        
-         var estado_arr = [];
-        const boton_alarma = document.getElementById('modo_robo');
-        boton_alarma.addEventListener('click', function(e){
-          // console.log('boton presionado');
-          Http2.open("GET", url2);
-          Http2.send();
+      const http_get_estado_alarma = new XMLHttpRequest();
+      const url_get_estado_alarma = 'http://apiproyecto1ace2.herokuapp.com/api/alarmas?filter[order]=id%20DESC&filter[limit]=1';
+       
+      // var popupp = require('popups');
+      var modo;
+      var contador_alarma = 0;
+      var estado_arr = [];
+      var params;
+      const boton_alarma = document.getElementById('modo_robo');
+      boton_alarma.addEventListener('click', function(e){
+        // console.log('boton presionado');
+        // ========================= Obteniendo estado de alarma =========================
+        http_get_estado_alarma.open("GET", url_get_estado_alarma );
+        http_get_estado_alarma.send();
 
-          Http2.onreadystatechange = (e) => {
-          
-          console.log(Http2.responseText);
-          estado_arr = JSON.parse(Http2.responseText);
+        http_get_estado_alarma.onreadystatechange = (e) => {
+        
+          console.log(http_get_estado_alarma.responseText);
+          estado_arr = JSON.parse(http_get_estado_alarma.responseText);
           console.log(estado_arr);
           var estado;
           var k;
           estado = estado_arr[0].estado;
           if(estado == 0){
-              console.log("ALARMA DESACTIVADA");
-              popup.alelrt({
-                content: "ALARMA DESACTIVADA"
-              });
+              console.log("ESTADO DESACTIVADO");
+              modo = 1;
+              contador_alarma++;
+              // popupp.alert({
+              //   content: 'ALARMA DESACTIVADA'
+              // });
               // alelrt("ALARMA DESACTIVADA");
-            }else{
-              console.log("ALARMA ACTIVADA");
-              alelrt("ALARMA ACTIVADA");
-            }
-          // document.getElementById("tabla").innerHTML = table_content;
+          }else{
+            console.log("ESTADO ACTIVADO");
+            modo = 0;
+            // alelrt("ALARMA ACTIVADA");
           }
-        });
+          // document.getElementById("tabla").innerHTML = table_content;
+        }
+
+        // ========================= Cambiando a modo robo =========================
+        const http_post_modo = new XMLHttpRequest();
+        const url_post_modo = 'http://apiproyecto1ace2.herokuapp.com/api/modos';
+        http_post_modo.open("POST", url_post_modo);
+        http_post_modo.send();
+        // http_post_modo.setRequestHeader('Content-Type', 'application/json');
+
+        http_post_modo.onreadystatechange = (e) => {
+          
+          if(http_post_modo.readyState == 4 && http_post_modo.status == 200){
+            alert(http_post_modo.responseText);
+            // console.log(http_post_modo.responseText);
+          }
+        }
+        http_post_modo.send(JSON.stringify({
+          estadomodo: 1
+        }));
+
+      });
        
     </script>
 </body>

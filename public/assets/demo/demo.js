@@ -15,6 +15,7 @@ const Http1 = new XMLHttpRequest();
   var luminosidad_arr = [];
   var sonido_arr = [];
   var ritmo_arr = [];
+  var pasos_arr = [];
   Http1.onreadystatechange = (e) => {
 
       // console.log(Http.responseText);
@@ -35,6 +36,7 @@ const Http1 = new XMLHttpRequest();
           luminosidad_arr[i] = datos_arr1[i].luminosidad;
           sonido_arr[i] = datos_arr1[i].sonido;
           ritmo_arr[i] = datos_arr1[i].ritmo;
+          pasos_arr[i] = datos_arr1[i].pasos;
       }
       document.getElementById("tabla").innerHTML = table_content;
   }
@@ -533,8 +535,8 @@ demo = {
       var chart_data = [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130];
       // var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
-      data.datasets[0].data = chart_data;
-      // data.datasets[0].data = pasos_arr;
+      // data.datasets[0].data = chart_data;
+      data.datasets[0].data = pasos_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
