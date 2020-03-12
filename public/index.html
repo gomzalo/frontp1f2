@@ -657,7 +657,7 @@
 
         // ========================= Cambiando a modo robo =========================
         const http_post_modo = new XMLHttpRequest();
-        const url_post_modo = 'http://apiproyecto1ace2.herokuapp.com/api/modos';
+        const url_post_modo = 'https://apiproyecto1ace2.herokuapp.com/api/modos';
         http_post_modo.open("POST", url_post_modo);
         http_post_modo.send();
         // http_post_modo.setRequestHeader('Content-Type', 'application/json');
@@ -668,10 +668,11 @@
             alert(http_post_modo.responseText);
             // console.log(http_post_modo.responseText);
           }
+          http_post_modo.send(JSON.stringify({
+            estadomodo: 1
+          }));
         }
-        http_post_modo.send(JSON.stringify({
-          estadomodo: 1
-        }));
+        
 
       });
        
