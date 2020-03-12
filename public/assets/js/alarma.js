@@ -45,7 +45,7 @@
               document.getElementById("contador_alarma_activa").innerHTML = contador_alarma;
         // ========================= Cambiando a modo robo =========================
         const http_post_modo = new XMLHttpRequest();
-        const url_post_modo = 'http://apiproyecto1ace2.herokuapp.com/api/modos';
+        const url_post_modo = 'https://apiproyecto1ace2.herokuapp.com/api/modos';
 
         
         http_post_modo.open("POST", url_post_modo);
