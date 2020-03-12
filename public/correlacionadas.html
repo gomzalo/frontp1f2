@@ -19,7 +19,7 @@
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="../assets/corr/corr.css" rel="stylesheet" />
 </head>
 
 <body class=" ">
@@ -30,12 +30,15 @@
     -->
       <div class="sidebar-wrapper">
         <div class="logo">
-          <a href="#" class="simple-text logo-normal">
+          <!-- <a href="http://www.creative-tim.com" class="simple-text logo-mini"> -->
+            <!-- CT -->
+          </a>
+          <a href="http://www.creative-tim.com" class="simple-text logo-normal">
             iBackPack
           </a>
         </div>
         <ul class="nav">
-          <li>
+          <li class="active ">
             <a href="./index.html">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
@@ -47,7 +50,7 @@
               <p>Correlacionadas</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="./map.html">
               <i class="tim-icons icon-pin"></i>
               <p>Mapa</p>
@@ -74,7 +77,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Proyecto 1 - Arquitectura de Computadores y Ensambladores 2</a>
+            <a class="navbar-brand" href="#">Proyecto 1 - Arquitectura de Computadores y Ensambladores 2</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -141,6 +144,9 @@
                   <li class="nav-link">
                     <button class="nav-item dropdown-item" id="modo_robo">Modo robo</button>
                   </li>
+                  <li class="nav-link">
+                    <p href="#" class="nav-item dropdown-item">Contador: <a id="contador_alarma_activa">0</a></p>
+                  </li>
                 </ul>
               </li>
               <li class="separator d-lg-none"></li>
@@ -165,20 +171,78 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
-            <div class="card card-plain">
+          <div class="col-12">
+            <div class="card card-chart">
               <div class="card-header ">
-                Google Maps
+                <div class="row">
+                  <div class="col-sm-6 text-left">
+                    <h5 class="card-category">Correlaciones</h5>
+                    <h2 class="card-title">Datos</h2>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                      <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                        <input type="radio" name="options" autocomplete="off" checked> Luz/Ritmo
+                      </label>
+                      <label class="btn btn-sm btn-primary btn-simple " id="1">
+                        <input type="radio" name="options" autocomplete="off"> Pasos/Ritmo
+                      </label>
+                      <label class="btn btn-sm btn-primary btn-simple " id="2">
+                        <input type="radio" name="options" autocomplete="off"> Peso/Ritmo
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="card-body ">
-                <!-- <div id="map" class="map"></div>
-                 -->
-                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.613147740803!2d-90.5269!3d14.621100000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDM3JzE2LjAiTiA5MMKwMzEnMzYuOCJX!5e0!3m2!1ses-419!2sgt!4v1583855414076!5m2!1ses-419!2sgt" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="chartBig1"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <h5 class="card-category">[KG]</h5>
+                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary "></i> Peso</h3>
+              </div>
+              <div class="card-body ">
+                <div class="chart-area">
+                  <canvas id="chartLinePurple"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <h5 class="card-category">[Luxes]</h5>
+                <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i> Luminosidad</h3>
+              </div>
+              <div class="card-body ">
+                <div class="chart-area">
+                  <canvas id="CountryChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <h5 class="card-category">[Flag]</h5>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success "></i> Liquido</h3>
+              </div>
+              <div class="card-body ">
+                <div class="chart-area">
+                  <canvas id="chartLineGreen"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       <footer class="footer">
         <div class="container-fluid">
           <nav>
@@ -224,7 +288,7 @@
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/black-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
     <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assets/demo/demo.js"></script>
+    <script src="../assets/corr/corr.js"></script>
     <script>
       $(document).ready(function() {
         $().ready(function() {
@@ -339,11 +403,9 @@
     <script>
       $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
-        // demo.initGoogleMaps();
+        corr.initDashboardPageCharts();
       });
     </script>
-     <!-- Modo alarma -->
-     
     <!-- :::::::::::::::::::::::::: MY SCRIPTS ::::::::::::::::::::::::::  -->
     <script src="../assets/js/alarma.js"></script>
 </body>

@@ -30,6 +30,9 @@
     -->
       <div class="sidebar-wrapper">
         <div class="logo">
+          <!-- <a href="http://www.creative-tim.com" class="simple-text logo-mini"> -->
+            <!-- CT -->
+          <!-- </a> -->
           <a href="#" class="simple-text logo-normal">
             iBackPack
           </a>
@@ -47,7 +50,7 @@
               <p>Correlacionadas</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="./map.html">
               <i class="tim-icons icon-pin"></i>
               <p>Mapa</p>
@@ -59,6 +62,30 @@
               <p>Datos</p>
             </a>
           </li>
+          <!-- <li>
+            <a href="./user.html">
+              <i class="tim-icons icon-single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="active ">
+            <a href="./tables.html">
+              <i class="tim-icons icon-puzzle-10"></i>
+              <p>Table List</p>
+            </a>
+          </li>
+          <li>
+            <a href="./typography.html">
+              <i class="tim-icons icon-align-center"></i>
+              <p>Typography</p>
+            </a>
+          </li>
+          <li>
+            <a href="./rtl.html">
+              <i class="tim-icons icon-world"></i>
+              <p>RTL Support</p>
+            </a>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -74,7 +101,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Proyecto 1 - Arquitectura de Computadores y Ensambladores 2</a>
+            <a class="navbar-brand" href="#">Proyecto 1 - Arquitectura de Computadores y Ensambladores 2</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -141,6 +168,9 @@
                   <li class="nav-link">
                     <button class="nav-item dropdown-item" id="modo_robo">Modo robo</button>
                   </li>
+                  <li class="nav-link">
+                    <p href="#" class="nav-item dropdown-item">Contador: <a id="contador_alarma_activa">0</a></p>
+                  </li>
                 </ul>
               </li>
               <li class="separator d-lg-none"></li>
@@ -166,15 +196,56 @@
       <div class="content">
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-plain">
-              <div class="card-header ">
-                Google Maps
+            <div class="card ">
+              <div class="card-header">
+                <h4 class="card-title"> Datos leidos</h4>
               </div>
-              <div class="card-body ">
-                <!-- <div id="map" class="map"></div>
-                 -->
-                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.613147740803!2d-90.5269!3d14.621100000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDM3JzE2LjAiTiA5MMKwMzEnMzYuOCJX!5e0!3m2!1ses-419!2sgt!4v1583855414076!5m2!1ses-419!2sgt" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+              
+              <!-- :::::::::::::::::::::::::: Tabla datos :::::::::::::::::::::::::::: -->
+        <div class="row">
+              <div class="col-lg-10 col-md-14">
+                <div class="card ">
+                  <div class="card-header">
+                    <h4 class="card-title">Datos leidos</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table tablesorter " id="">
+                        <thead class=" text-primary">
+                          <th>
+                            ID
+                          </th>
+                          <th>
+                            Peso
+                          </th>
+                          <th>
+                            Inclinación
+                          </th>
+                          <th>
+                            Liquido
+                          </th>
+                          <th class="text-center">
+                            Luminosidad
+                          </th>
+                          <th>
+                            Sonido
+                          </th>
+                          <th>
+                            Ritmo
+                          </th>
+                          <th>
+                            Pasos
+                          </th>
+                        </thead>
+                        <tbody id="tabla">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+
             </div>
           </div>
         </div>
@@ -208,6 +279,14 @@
             <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
           </div>
       </footer>
+      </div>
+    </div>
+    <div class="fixed-plugin">
+      <div class="dropdown show-dropdown">
+        <a href="#" data-toggle="dropdown">
+          <i class="fa fa-cog fa-2x"> </i>
+        </a>
+        
       </div>
     </div>
     <!--   Core JS Files   -->
@@ -335,17 +414,52 @@
           });
         });
       });
+      
     </script>
-    <script>
-      $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        // demo.initGoogleMaps();
-      });
-    </script>
-     <!-- Modo alarma -->
-     
     <!-- :::::::::::::::::::::::::: MY SCRIPTS ::::::::::::::::::::::::::  -->
-    <script src="../assets/js/alarma.js"></script>
+    <!-- Obteniendo arreglo de datos -->
+    <script>
+
+      // **************************   TABLA DE DATOS  **************************
+      
+      const Http = new XMLHttpRequest();
+      const url='https://apiproyecto1ace2.herokuapp.com/api/datos';
+      
+      Http.open("GET", url);
+      Http.send();
+      // Tabla de datos
+      var datos_arr = [];
+
+      Http.onreadystatechange = (e) => {
+
+          // console.log(Http.responseText);
+          datos_arr = JSON.parse(Http.responseText);
+          console.log(datos_arr);
+
+          
+          // console.log("datospos1");
+          // console.log(datos_arr[0].peso);
+          var table_content = "";
+          var i;
+          for (i = 0; i < datos_arr.length; i++) {
+              table_content += "<tr>"
+                                  + "<td>" + datos_arr[i].id + "</td>"
+                                  + "<td>" + datos_arr[i].peso + "</td>"
+                                  + "<td>" + datos_arr[i].inclinacion + "</td>"
+                                  + "<td>" + datos_arr[i].agua + "</td>"
+                                  + "<td>" + datos_arr[i].luminosidad + "</td>"
+                                  + "<td>" + datos_arr[i].sonido + "</td>"
+                                  + "<td>" + datos_arr[i].ritmo + "</td>"
+                                  + "<td>" + datos_arr[i].pasos + "</td>"
+                              + "</tr>";
+          }
+          document.getElementById("tabla").innerHTML = table_content;
+      } 
+      
+     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     
+  </script>
+  <script src="../assets/js/alarma.js"></script>
 </body>
 
 </html>

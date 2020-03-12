@@ -18,7 +18,7 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <!-- CSS Just =for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
@@ -45,48 +45,24 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <!-- <li>
-            <a href="./examples/icons.html">
+          <li>
+            <a href="./correlacionadas.html">
               <i class="tim-icons icon-atom"></i>
-              <p>Icons</p>
+              <p>Correlacionadas</p>
             </a>
-          </li> -->
+          </li>
           <li>
             <a href="./map.html">
               <i class="tim-icons icon-pin"></i>
               <p>Mapa</p>
             </a>
           </li>
-          <!-- <li>
-            <a href="./examples/notifications.html">
+          <li>
+            <a href="./datos.html">
               <i class="tim-icons icon-bell-55"></i>
-              <p>Notifications</p>
+              <p>Datos</p>
             </a>
           </li>
-          <li>
-            <a href="./examples/user.html">
-              <i class="tim-icons icon-single-02"></i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li>
-            <a href="./examples/tables.html">
-              <i class="tim-icons icon-puzzle-10"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="./examples/typography.html">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Typography</p>
-            </a>
-          </li> -->
-          <!-- <li>
-            <a href="./examples/rtl.html">
-              <i class="tim-icons icon-world"></i>
-              <p>RTL Support</p>
-            </a>
-          </li> -->
         </ul>
       </div>
     </div>
@@ -179,13 +155,13 @@
                   <li class="nav-link">
                     <button class="nav-item dropdown-item" id="modo_robo">Modo robo</button>
                   </li>
-                  <!-- <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Settings</a>
+                  <li class="nav-link">
+                    <p href="#" class="nav-item dropdown-item">Contador: <a id="contador_alarma_activa">0</a></p>
                   </li>
                   <div class="dropdown-divider"></div>
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Log out</a>
-                  </li> -->
+                    <p href="#" class="nav-item dropdown-item">Estado alarma: <a id="estado_alarma">0</a></p>
+                  </li>
                 </ul>
               </li>
               <li class="separator d-lg-none"></li>
@@ -242,7 +218,23 @@
             </div>
           </div>
         </div>
+          <!-- PESO -->
         <div class="row">
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <h5 class="card-category">[KG]</h5>
+                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary "></i>Peso</h3>
+              </div>
+              <div class="card-body ">
+                <div class="chart-area">
+                  <!-- <canvas id="chartLinePurple"></canvas> -->
+                  <canvas id="chartPeso"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- LUZ -->
           <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header ">
@@ -251,24 +243,12 @@
               </div>
               <div class="card-body ">
                 <div class="chart-area">
-                  <canvas id="chartLinePurple"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="col-lg-4">
-            <div class="card card-chart">
-              <div class="card-header ">
-                <h5 class="card-category">[Luxes]</h5>
-                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary "></i>Luminosidaaaad</h3>
-              </div>
-              <div class="card-body ">
-                <div class="chart-area">
                   <canvas id="lineChartExample"></canvas>
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
+          <!-- AGUA -->
           <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header ">
@@ -282,6 +262,7 @@
               </div>
             </div>
           </div>
+          <!-- SONIDO -->
           <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header ">
@@ -296,8 +277,8 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          
+        <!-- :::::::::::::::::::::::::: Tabla datos :::::::::::::::::::::::::::: -->
+        <!-- <div class="row">
           <div class="col-lg-10 col-md-14">
             <div class="card ">
               <div class="card-header">
@@ -333,41 +314,14 @@
                       </th>
                     </thead>
                     <tbody id="tabla">
-                      <!-- <tr>
-                        <td>
-                          Dakota Rice
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-center">
-                          $36,738
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-center">
-                          $23,789
-                        </td>
-                      </tr> -->
+                     
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <footer class="footer">
         <div class="container-fluid">
@@ -400,42 +354,6 @@
       </footer>
       </div>
     </div>
-    <!-- <div class="fixed-plugin"> -->
-      <!-- <div class="dropdown show-dropdown">
-        <ul class="dropdown-menu">
-          <li class="header-title"> Sidebar Background</li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger background-color">
-              <div class="badge-colors text-center">
-                <span class="badge filter badge-primary active" data-color="primary"></span>
-                <span class="badge filter badge-blue" data-color="blue"></span>
-                <span class="badge filter badge-green" data-color="green"></span>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="adjustments-line text-center color-change">
-            <span class="color-label">LIGHT MODE</span>
-            <span class="badge light-badge mr-2"></span>
-            <span class="badge dark-badge ml-2"></span>
-            <span class="color-label">DARK MODE</span>
-          </li>
-          <li class="button-container">
-            <a href="https://www.creative-tim.com/product/black-dashboard" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-            <a href="https://demos.creative-tim.com/black-dashboard/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
-              Documentation
-            </a>
-          </li>
-          <li class="header-title">Thank you for 95 shares!</li>
-          <li class="button-container text-center">
-            <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-            <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-            <br>
-            <br>
-            <a class="github-button" href="https://github.com/creativetimofficial/black-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-          </li>
-        </ul>
-      </div> -->
     </div>
     <!--   Core JS Files   -->
     <script src="../assets/js/core/jquery.min.js"></script>
@@ -572,111 +490,10 @@
       });
     </script>
     <!-- :::::::::::::::::::::::::: MY SCRIPTS ::::::::::::::::::::::::::  -->
-    <!-- Obteniendo arreglo de datos -->
+    <script src="../assets/js/alarma.js"></script>
     <!-- <script src="/public/constantes.js"></script> -->
-    <script>
-
-        // **************************   TABLA DE DATOS  **************************
-        const Http = new XMLHttpRequest();
-        const url='https://apiproyecto1ace2.herokuapp.com/api/datos';
-        
-        Http.open("GET", url);
-        Http.send();
-        // Tabla de datos
-        var datos_arr = [];
-
-        Http.onreadystatechange = (e) => {
-
-            // console.log(Http.responseText);
-            datos_arr = JSON.parse(Http.responseText);
-            console.log(datos_arr);
-
-            
-            // console.log("datospos1");
-            // console.log(datos_arr[0].peso);
-            var table_content = "";
-            var i;
-            for (i = 0; i < datos_arr.length; i++) {
-                table_content += "<tr>"
-                                    + "<td>" + datos_arr[i].id + "</td>"
-                                    + "<td>" + datos_arr[i].peso + "</td>"
-                                    + "<td>" + datos_arr[i].inclinacion + "</td>"
-                                    + "<td>" + datos_arr[i].agua + "</td>"
-                                    + "<td>" + datos_arr[i].luminosidad + "</td>"
-                                    + "<td>" + datos_arr[i].sonido + "</td>"
-                                    + "<td>" + datos_arr[i].ritmo + "</td>"
-                                    + "<td>" + datos_arr[i].pasos + "</td>"
-                                + "</tr>";
-            }
-            document.getElementById("tabla").innerHTML = table_content;
-        } 
-        
-       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       
-    </script>
     <!-- Modo alarma -->
-    <script>
-      const http_get_estado_alarma = new XMLHttpRequest();
-      const url_get_estado_alarma = 'https://apiproyecto1ace2.herokuapp.com/api/alarmas?filter[order]=id%20DESC&filter[limit]=1';
-       
-      // var popupp = require('popups');
-      var modo;
-      var contador_alarma = 0;
-      var estado_arr = [];
-      var params;
-      const boton_alarma = document.getElementById('modo_robo');
-      boton_alarma.addEventListener('click', function(e){
-        // console.log('boton presionado');
-        // ========================= Obteniendo estado de alarma =========================
-        http_get_estado_alarma.open("GET", url_get_estado_alarma );
-        http_get_estado_alarma.send();
-
-        http_get_estado_alarma.onreadystatechange = (e) => {
-        
-          console.log(http_get_estado_alarma.responseText);
-          estado_arr = JSON.parse(http_get_estado_alarma.responseText);
-          console.log(estado_arr);
-          var estado;
-          var k;
-          estado = estado_arr[0].estado;
-          if(estado == 0){
-              console.log("ESTADO DESACTIVADO");
-              modo = 1;
-              contador_alarma++;
-              // popupp.alert({
-              //   content: 'ALARMA DESACTIVADA'
-              // });
-              // alelrt("ALARMA DESACTIVADA");
-          }else{
-            console.log("ESTADO ACTIVADO");
-            modo = 0;
-            // alelrt("ALARMA ACTIVADA");
-          }
-          // document.getElementById("tabla").innerHTML = table_content;
-        }
-
-        // ========================= Cambiando a modo robo =========================
-        const http_post_modo = new XMLHttpRequest();
-        const url_post_modo = 'https://apiproyecto1ace2.herokuapp.com/api/modos';
-        http_post_modo.open("POST", url_post_modo);
-        http_post_modo.send();
-        // http_post_modo.setRequestHeader('Content-Type', 'application/json');
-
-        http_post_modo.onreadystatechange = (e) => {
-          
-          if(http_post_modo.readyState == 4 && http_post_modo.status == 200){
-            alert(http_post_modo.responseText);
-            // console.log(http_post_modo.responseText);
-          }
-          http_post_modo.send(JSON.stringify({
-            estadomodo: 1
-          }));
-        }
-        
-
-      });
-       
-    </script>
+    
 </body>
 
 </html>

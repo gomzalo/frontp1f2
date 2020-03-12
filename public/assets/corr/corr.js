@@ -16,8 +16,6 @@ const Http1 = new XMLHttpRequest();
   var sonido_arr = [];
   var ritmo_arr = [];
   var pasos_arr = [];
-
-  var tam_arr = 0;
   Http1.onreadystatechange = (e) => {
 
       // console.log(Http.responseText);
@@ -29,7 +27,7 @@ const Http1 = new XMLHttpRequest();
       // console.log(datos_arr[0].peso);
       var table_content = "";
       var i;
-      for (i = datos_arr1.length-1; i > 0; i--) {
+      for (i = 0; i < datos_arr1.length; i++) {
           // Llenando los arreglos
           id_arr[i] = datos_arr1[i].id;
           inclinacion_arr[i] = datos_arr1[i].inclinacion;
@@ -40,15 +38,14 @@ const Http1 = new XMLHttpRequest();
           ritmo_arr[i] = datos_arr1[i].ritmo;
           pasos_arr[i] = datos_arr1[i].pasos;
       }
-      // document.getElementById("tabla").innerHTML = table_content;
+      document.getElementById("tabla").innerHTML = table_content;
   }
-  tam_arr = id_arr.length;
   // **************************   Usando arreglos de datos  **************************
  console.log("arreglo de ritmos: ");
  console.log(ritmo_arr);
 type = ['primary', 'info', 'success', 'warning', 'danger'];
 
-demo = {
+corr = {
   initPickColor: function() {
     $('.pick-class-label').click(function() {
       var new_class = $(this).attr('new-class');
@@ -121,16 +118,16 @@ demo = {
     };
 
     // ctx = document.getElementById('lineChartExample').getContext("2d");
-    // ---------------------------- PESO ----------------------------
-    // ctx = document.getElementById('chartPeso').getContext("2d");
+    // ---------------------------- chartlinepurple ----------------------------
+    // ctx = document.getElementById('chartLinePurple').getContext("2d");
 
     // gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
     // gradientStroke.addColorStop(0, '#80b6f4');
     // gradientStroke.addColorStop(1, chartColor);
 
-    // // gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-    // // gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-    // // gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
+    // gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+    // gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+    // gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
 
     // myChart = new Chart(ctx, {
     //   type: 'line',
@@ -150,11 +147,11 @@ demo = {
     //       backgroundColor: gradientFill,
     //       borderWidth: 2,
     //       // data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
-    //       data: peso_arr
+    //       data: luminosidad_arr
     //     }]
     //   },
-    //   // options: gradientChartOptionsConfiguration
-    //   options: gradientChartOptionsConfigurationWithTooltipOrange
+    //   options: gradientChartOptionsConfiguration
+    //   // options: gradientChartOptionsConfigurationWithTooltipOrange
     // });
   // ---------------------------- ----------------------------
   },
@@ -235,13 +232,32 @@ demo = {
             color: 'rgba(29,140,248,0.0)',
             zeroLineColor: "transparent",
           },
+          position: 'left',          
           ticks: {
             suggestedMin: 60,
             suggestedMax: 125,
             padding: 20,
             fontColor: "#9a9a9a"
-          }
-        }],
+          },
+          id: 'y-axis-1',
+        },
+        {
+          barPercentage: 1.6,
+          gridLines: {
+            drawBorder: false,
+            color: 'rgba(29,140,248,0.0)',
+            zeroLineColor: "transparent",
+          },
+          position: 'left',          
+          ticks: {
+            suggestedMin: 60,
+            suggestedMax: 125,
+            padding: 20,
+            fontColor: "#9a9a9a"
+          },
+          id: 'y-axis-2',
+        }
+      ],
 
         xAxes: [{
           barPercentage: 1.6,
@@ -402,53 +418,8 @@ demo = {
         }]
       }
     };
-// ---------------------------- PESO ----------------------------
-var ctxP = document.getElementById("chartPeso").getContext("2d");
-
-var gradientStroke = ctxP.createLinearGradient(0, 230, 0, 50);
-
-gradientStroke.addColorStop(1, 'rgba(72,72,176,0.2)');
-// gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');s
-gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
-tam_arr
-var label_arr = [];
-var escala_arr = 10;
-// var ii;
-for (let ii = 0; ii < tam_arr; ii++) {
-  label_arr[ii] = escala_arr;
-  escala_arr += 10;
-}
-var data = {
-  // labels: ['0', '5', '10', '15', '20', '25', '30', '40'],
-  labels: ['0', '5', '10', '15', '20', '25', '30', '40'],
-  datasets: [{
-    label: "Data",
-    fill: true,
-    backgroundColor: gradientStroke,
-    borderColor: '#d048b6',
-    borderWidth: 2,
-    borderDash: [],
-    borderDashOffset: 0.0,
-    pointBackgroundColor: '#d048b6',
-    pointBorderColor: 'rgba(255,255,255,0)',
-    pointHoverBackgroundColor: '#d048b6',
-    pointBorderWidth: 20,
-    pointHoverRadius: 4,
-    pointHoverBorderWidth: 15,
-    pointRadius: 4,
-    // data: [80, 100, 70, 80, 120, 80],
-    data: peso_arr,
-  }]
-};
-
-var myChart = new Chart(ctxP, {
-  type: 'line',
-  data: data,
-  // options: gradientChartOptionsConfigurationWithTooltipPurple
-  options: gradientChartOptionsConfigurationWithTooltipOrange
-});
-// ---------------------------- LUZ ----------------------------
-    var ctx = document.getElementById("lineChartExample").getContext("2d");
+// ---------------------------- chartlinepurple ----------------------------
+    var ctx = document.getElementById("chartLinePurple").getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
@@ -484,8 +455,7 @@ var myChart = new Chart(ctxP, {
       // options: gradientChartOptionsConfigurationWithTooltipPurple
       options: gradientChartOptionsConfigurationWithTooltipOrange
     });
-
-// ---------------------------- SONIDO ----------------------------
+// ----------------------------  ----------------------------
 
     var ctxGreen = document.getElementById("chartLineGreen").getContext("2d");
 
@@ -541,24 +511,47 @@ var myChart = new Chart(ctxP, {
       type: 'line',
       data: {
         labels: chart_labels,
-        datasets: [{
-          label: "My First dataset",
-          fill: true,
-          backgroundColor: gradientStroke,
-          borderColor: '#d346b1',
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          pointBackgroundColor: '#d346b1',
-          pointBorderColor: 'rgba(255,255,255,0)',
-          pointHoverBackgroundColor: '#d346b1',
-          pointBorderWidth: 20,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 15,
-          pointRadius: 4,
-          // data: chart_data,
-          data: ritmo_arr,
-        }]
+        datasets: 
+        [
+          {
+            label: "Pasos",
+            fill: true,
+            backgroundColor: gradientStroke,
+            borderColor: '#d346b1',
+            borderWidth: 2,
+            borderDash: [],
+            borderDashOffset: 0.0,
+            pointBackgroundColor: '#d346b1',
+            pointBorderColor: 'rgba(255,255,255,0)',
+            pointHoverBackgroundColor: '#d346b1',
+            pointBorderWidth: 20,
+            pointHoverRadius: 4,
+            pointHoverBorderWidth: 15,
+            pointRadius: 4,
+            // data: chart_data,
+            data: luminosidad_arr,
+            yAxisID: 'y-axis-1',
+          },
+          {
+            label: "Luz",
+            fill: true,
+            backgroundColor: gradientStroke,
+            borderColor: '#d346b1',
+            borderWidth: 2,
+            borderDash: [],
+            borderDashOffset: 0.0,
+            pointBackgroundColor: '#d346b1',
+            pointBorderColor: 'rgba(255,255,255,0)',
+            pointHoverBackgroundColor: '#d346b1',
+            pointBorderWidth: 20,
+            pointHoverRadius: 4,
+            pointHoverBorderWidth: 15,
+            pointRadius: 4,
+            // data: chart_data,
+            data: ritmo_arr,
+            yAxisID: 'y-axis-2',
+          }
+        ]
       },
       options: gradientChartOptionsConfigurationWithTooltipPurple
     };
@@ -566,16 +559,60 @@ var myChart = new Chart(ctxP, {
     $("#0").click(function() {
       var data = myChartData.config.data;
       // data.datasets[0].data = chart_data;
-      data.datasets[0].data = ritmo_arr;
+      data.datasets[0].data = luminosidad_arr;
+      // data.datasets[0].data = {
+      //   labels: chart_labels,
+      //   datasets: 
+      //   [
+      //     {
+      //       label: "Pasos",
+      //       fill: true,
+      //       backgroundColor: gradientStroke,
+      //       borderColor: '#d346b1',
+      //       borderWidth: 2,
+      //       borderDash: [],
+      //       borderDashOffset: 0.0,
+      //       pointBackgroundColor: '#d346b1',
+      //       pointBorderColor: 'rgba(255,255,255,0)',
+      //       pointHoverBackgroundColor: '#d346b1',
+      //       pointBorderWidth: 20,
+      //       pointHoverRadius: 4,
+      //       pointHoverBorderWidth: 15,
+      //       pointRadius: 4,
+      //       // data: chart_data,
+      //       data: pasos_arr,
+      //       yAxisID: 'y-axis-1',
+      //     },
+      //     {
+      //       label: "Luz",
+      //       fill: true,
+      //       backgroundColor: gradientStroke,
+      //       borderColor: '#d346b1',
+      //       borderWidth: 2,
+      //       borderDash: [],
+      //       borderDashOffset: 0.0,
+      //       pointBackgroundColor: '#d346b1',
+      //       pointBorderColor: 'rgba(255,255,255,0)',
+      //       pointHoverBackgroundColor: '#d346b1',
+      //       pointBorderWidth: 20,
+      //       pointHoverRadius: 4,
+      //       pointHoverBorderWidth: 15,
+      //       pointRadius: 4,
+      //       // data: chart_data,
+      //       data: luminosidad_arr,
+      //       yAxisID: 'y-axis-2',
+      //     }
+      //   ]
+      // };
       data.labels = chart_labels;
       myChartData.update();
     });
     $("#1").click(function() {
       // var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
-      var chart_data = inclinacion_arr;
+      // var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
       // data.datasets[0].data = chart_data;
-      data.datasets[0].data = inclinacion_arr;
+      data.datasets[0].data = pasos_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
@@ -585,7 +622,7 @@ var myChart = new Chart(ctxP, {
       // var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
       // data.datasets[0].data = chart_data;
-      data.datasets[0].data = pasos_arr;
+      data.datasets[0].data = peso_arr;
       data.labels = chart_labels;
       myChartData.update();
     });
