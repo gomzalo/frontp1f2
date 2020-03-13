@@ -200,8 +200,8 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            min: 100,
-            max: 1100,
+            min: 0,
+            max: 500,
             padding: 50,
             fontColor: "#2380f7"
           }
@@ -299,8 +299,8 @@ demo = {
             // min: Math.min.apply(this, peso_arr) - 5,
             // max: Math.min.apply(this, peso_arr) - 5,
             min: 0,
-            max: 250,
-            stepSize: 25,
+            max: 500,
+            stepSize: 300,
             // suggestedMin: 5,
             // suggestedMax: 150,
             // padding: 5,
@@ -352,7 +352,7 @@ demo = {
             // suggestedMin: 0,
             // suggestedMax: 5,
             min: 0,
-            max: 500,
+            max: 300,
             // min: Math.min.apply(this, sonido_arr) - 5,
             // max: Math.min.apply(this, sonido_arr) - 5,
             padding: 5,

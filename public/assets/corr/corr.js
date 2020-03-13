@@ -25,20 +25,41 @@ const Http1 = new XMLHttpRequest();
       
       // console.log("datospos1");
       // console.log(datos_arr[0].peso);
-      var table_content = "";
-      var i;
-      for (i = 0; i < datos_arr1.length; i++) {
+      // var table_content = "";
+      // var i;
+      // for (i = 0; i < datos_arr1.length; i++) {
+      //     // Llenando los arreglos
+      //     id_arr[i] = datos_arr1[i].id;
+      //     inclinacion_arr[i] = datos_arr1[i].inclinacion;
+      //     peso_arr[i] = datos_arr1[i].peso;
+      //     agua_arr[i] = datos_arr1[i].agua;
+      //     luminosidad_arr[i] = datos_arr1[i].luminosidad;
+      //     sonido_arr[i] = datos_arr1[i].sonido;
+      //     ritmo_arr[i] = datos_arr1[i].ritmo;
+      //     pasos_arr[i] = datos_arr1[i].pasos;
+      // }
+      var l;
+      for (l = datos_arr1.length-1; l > 0; l--) {
+        // for (l = 0; l < datos_arr1.length; l) {
           // Llenando los arreglos
-          id_arr[i] = datos_arr1[i].id;
-          inclinacion_arr[i] = datos_arr1[i].inclinacion;
-          peso_arr[i] = datos_arr1[i].peso;
-          agua_arr[i] = datos_arr1[i].agua;
-          luminosidad_arr[i] = datos_arr1[i].luminosidad;
-          sonido_arr[i] = datos_arr1[i].sonido;
-          ritmo_arr[i] = datos_arr1[i].ritmo;
-          pasos_arr[i] = datos_arr1[i].pasos;
+          id_arr.push(datos_arr1[l].id);
+          // id_arr[l] = datos_arr1[l].id;
+          inclinacion_arr.push(datos_arr1[l].inclinacion);
+          // inclinacion_arr[l] = datos_arr1[l].inclinacion;
+          peso_arr.push(datos_arr1[l].peso);
+          // peso_arr[l] = datos_arr1[l].peso;
+          agua_arr.push(datos_arr1[l].agua);
+          // agua_arr[l] = datos_arr1[l].agua;
+          luminosidad_arr.push(datos_arr1[l].luminosidad);
+          // luminosidad_arr[l] = datos_arr1[l].luminosidad;
+          sonido_arr.push(datos_arr1[l].sonido);
+          // sonido_arr[l] = datos_arr1[l].sonido;
+          ritmo_arr.push(datos_arr1[l].ritmo);
+          // ritmo_arr[l] = datos_arr1[l].ritmo;
+          pasos_arr.push(datos_arr1[l].pasos);
+          // pasos_arr[l] = datos_arr1[l].pasos;
       }
-      document.getElementById("tabla").innerHTML = table_content;
+      // document.getElementById("tabla").innerHTML = table_content;
   }
   // **************************   Usando arreglos de datos  **************************
  console.log("arreglo de ritmos: ");
@@ -234,8 +255,10 @@ corr = {
           },
           position: 'left',          
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
+            // suggestedMin: 60,
+            // suggestedMax: 125,
+            min: 0,
+            max: 1000,
             padding: 20,
             fontColor: "#9a9a9a"
           },
@@ -250,8 +273,10 @@ corr = {
           },
           position: 'left',          
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
+            // suggestedMin: 60,
+            // suggestedMax: 125,
+            min: 0,
+            max: 1000,
             padding: 20,
             fontColor: "#9a9a9a"
           },
