@@ -27,22 +27,34 @@ const Http1 = new XMLHttpRequest();
       
       // console.log("datospos1");
       // console.log(datos_arr[0].peso);
-      var table_content = "";
-      var i;
-      for (i = datos_arr1.length-1; i > 0; i--) {
+      // var table_content = "";
+      var l;
+      for (l = datos_arr1.length-1; l > 0; l--) {
+        // for (l = 0; l < datos_arr1.length; l) {
           // Llenando los arreglos
-          id_arr[i] = datos_arr1[i].id;
-          inclinacion_arr[i] = datos_arr1[i].inclinacion;
-          peso_arr[i] = datos_arr1[i].peso;
-          agua_arr[i] = datos_arr1[i].agua;
-          luminosidad_arr[i] = datos_arr1[i].luminosidad;
-          sonido_arr[i] = datos_arr1[i].sonido;
-          ritmo_arr[i] = datos_arr1[i].ritmo;
-          pasos_arr[i] = datos_arr1[i].pasos;
+          id_arr.push(datos_arr1[l].id);
+          // id_arr[l] = datos_arr1[l].id;
+          inclinacion_arr.push(datos_arr1[l].inclinacion);
+          // inclinacion_arr[l] = datos_arr1[l].inclinacion;
+          peso_arr.push(datos_arr1[l].peso);
+          // peso_arr[l] = datos_arr1[l].peso;
+          agua_arr.push(datos_arr1[l].agua);
+          // agua_arr[l] = datos_arr1[l].agua;
+          luminosidad_arr.push(datos_arr1[l].luminosidad);
+          // luminosidad_arr[l] = datos_arr1[l].luminosidad;
+          sonido_arr.push(datos_arr1[l].sonido);
+          // sonido_arr[l] = datos_arr1[l].sonido;
+          ritmo_arr.push(datos_arr1[l].ritmo);
+          // ritmo_arr[l] = datos_arr1[l].ritmo;
+          pasos_arr.push(datos_arr1[l].pasos);
+          // pasos_arr[l] = datos_arr1[l].pasos;
       }
       // document.getElementById("tabla").innerHTML = table_content;
+       
   }
-  tam_arr = id_arr.length;
+  // tam_arr = id_arr.length;
+  // console.log("tam arr: "+peso_arr.length);
+  console.log(peso_arr);
   // **************************   Usando arreglos de datos  **************************
  console.log("arreglo de ritmos: ");
  console.log(ritmo_arr);
@@ -188,9 +200,9 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
-            padding: 20,
+            min: 100,
+            max: 1100,
+            padding: 50,
             fontColor: "#2380f7"
           }
         }],
@@ -236,9 +248,9 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
-            padding: 20,
+            suggestedMin: 5,
+            suggestedMax: 150,
+            padding: 10,
             fontColor: "#9a9a9a"
           }
         }],
@@ -284,9 +296,14 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 150,
-            suggestedMax: 1500,
-            padding: 150,
+            // min: Math.min.apply(this, peso_arr) - 5,
+            // max: Math.min.apply(this, peso_arr) - 5,
+            min: 0,
+            max: 250,
+            stepSize: 25,
+            // suggestedMin: 5,
+            // suggestedMax: 150,
+            // padding: 5,
             fontColor: "#ff8a76"
           }
         }],
@@ -332,9 +349,14 @@ demo = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 50,
-            suggestedMax: 550,
-            padding: 50,
+            // suggestedMin: 0,
+            // suggestedMax: 5,
+            min: 0,
+            max: 500,
+            // min: Math.min.apply(this, sonido_arr) - 5,
+            // max: Math.min.apply(this, sonido_arr) - 5,
+            padding: 5,
+            // stepSize: 0.5,
             fontColor: "#9e9e9e"
           }
         }],
@@ -383,6 +405,8 @@ demo = {
           ticks: {
             suggestedMin: true,
             suggestedMax: false,
+            // min: true,
+            // max: false,
             padding: 20,
             fontColor: "#9e9e9e"
           }
@@ -420,7 +444,8 @@ for (let ii = 0; ii < tam_arr; ii++) {
 }
 var data = {
   // labels: ['0', '5', '10', '15', '20', '25', '30', '40'],
-  labels: ['0', '5', '10', '15', '20', '25', '30', '40'],
+  // labels: ['0', '5', '10', '15', '20', '25', '30', '40'],
+  labels: ['0', '3', '9', '12', '15', '18', '21', '24', '27', '30', '33', '36', '39', '42', '45'],
   datasets: [{
     label: "Data",
     fill: true,
@@ -482,7 +507,7 @@ var myChart = new Chart(ctxP, {
       type: 'line',
       data: data,
       // options: gradientChartOptionsConfigurationWithTooltipPurple
-      options: gradientChartOptionsConfigurationWithTooltipOrange
+      options: gradientChartOptionsConfigurationWithTooltipBlue
     });
 
 // ---------------------------- SONIDO ----------------------------
@@ -496,9 +521,9 @@ var myChart = new Chart(ctxP, {
     gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
 
     var data = {
-      labels: ['5', '10', '15', '20', '25'],
+      labels: ['5', '10', '15', '20', '25', '30', '35', '45', '50'],
       datasets: [{
-        label: "My First dataset",
+        label: "Sonido",
         fill: true,
         backgroundColor: gradientStroke,
         borderColor: '#00d6b4',
@@ -529,7 +554,7 @@ var myChart = new Chart(ctxP, {
     var chart_labels = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
     // var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
 
-
+// ::::::::::::::::::::::::::::::::: Principales ::::::::::::::::::::::::::::::
     var ctx = document.getElementById("chartBig1").getContext('2d');
 
     var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
@@ -572,7 +597,7 @@ var myChart = new Chart(ctxP, {
     });
     $("#1").click(function() {
       // var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
-      var chart_data = inclinacion_arr;
+      // var chart_data = inclinacion_arr;
       var data = myChartData.config.data;
       // data.datasets[0].data = chart_data;
       data.datasets[0].data = inclinacion_arr;
@@ -589,7 +614,67 @@ var myChart = new Chart(ctxP, {
       data.labels = chart_labels;
       myChartData.update();
     });
+// ::::::::::::::::::::::::::::::::::::::: x2 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+// var ctx = document.getElementById("chartBig11").getContext('2d');
+
+// var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+// gradientStroke.addColorStop(1, 'rgba(72,72,176,0.1)');
+// gradientStroke.addColorStop(0.4, 'rgba(72,72,176,0.0)');
+// gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+// var config = {
+//   type: 'line',
+//   data: {
+//     labels: chart_labels,
+//     datasets: [{
+//       label: "My First dataset",
+//       fill: true,
+//       backgroundColor: gradientStroke,
+//       borderColor: '#d346b1',
+//       borderWidth: 2,
+//       borderDash: [],
+//       borderDashOffset: 0.0,
+//       pointBackgroundColor: '#d346b1',
+//       pointBorderColor: 'rgba(255,255,255,0)',
+//       pointHoverBackgroundColor: '#d346b1',
+//       pointBorderWidth: 20,
+//       pointHoverRadius: 4,
+//       pointHoverBorderWidth: 15,
+//       pointRadius: 4,
+//       // data: chart_data,
+//       data: peso_arr,
+//     }]
+//   },
+//   options: gradientChartOptionsConfigurationWithTooltipPurple
+// };
+// var myChartData = new Chart(ctx, config);
+// $("#01").click(function() {
+//   var data = myChartData.config.data;
+//   // data.datasets[0].data = chart_data;
+//   data.datasets[0].data = peso_arr;
+//   data.labels = chart_labels;
+//   myChartData.update();
+// });
+// $("#11").click(function() {
+//   // var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
+//   var chart_data = inclinacion_arr;
+//   var data = myChartData.config.data;
+//   // data.datasets[0].data = chart_data;
+//   data.datasets[0].data = luminosidad_arr;
+//   data.labels = chart_labels;
+//   myChartData.update();
+// });
+
+// $("#21").click(function() {
+//   // var chart_data = [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130];
+//   // var chart_data = inclinacion_arr;
+//   var data = myChartData.config.data;
+//   // data.datasets[0].data = chart_data;
+//   data.datasets[0].data = pasos_arr;
+//   data.labels = chart_labels;
+//   myChartData.update();
+// });
 
     var ctx = document.getElementById("CountryChart").getContext("2d");
 
